@@ -1,8 +1,10 @@
 FROM golang:1.8.1-alpine
 
-COPY . /workspace
-WORKDIR /workspace
+RUN apk --no-cache add make git gcc
+
+WORKDIR /go/src/github.com/JetMuffin/nap
+COPY . .
 
 RUN make clean && make
 
-ENTRYPOINT ["./build/nap"]
+ENTRYPOINT ["./bin/nap", "master"]
