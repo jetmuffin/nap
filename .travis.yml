@@ -3,7 +3,7 @@ sudo: required
 language: go
 
 go:
-  - 1.6
+  - 1.8
 
 before_install:
   - export PATH=/home/travis/gopath/bin:$PATH
