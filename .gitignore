@@ -1,0 +1,5 @@
+bin/nap
+coverage-all.out
+coverage.out
+coverage.html
+.idea

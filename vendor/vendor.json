@@ -1,0 +1,13 @@
+{
+	"comment": "",
+	"ignore": "",
+	"package": [
+		{
+			"checksumSHA1": "5S58pVVEL/NJvSY17z01u3+9eF8=",
+			"path": "github.com/urfave/cli",
+			"revision": "44cb242eeb4d76cc813fdc69ba5c4b224677e799",
+			"revisionTime": "2017-11-04T02:35:40Z"
+		}
+	],
+	"rootPath": "github.com/JetMuffin/nap"
+}

@@ -1,0 +1,246 @@
+{
+  "version": "1.5.0",
+  "git_sha": "27fab88b31e6fe3c8d2abbdce3b4b86d95e5e1cb",
+  "git_branch": "refs\/heads\/dev",
+  "build_date": "2017-10-31 20:32:25",
+  "build_time": 1509453145.0,
+  "build_user": "root",
+  "start_time": 1510063775.19582,
+  "elected_time": 1510063775.20783,
+  "id": "82311b96-de23-4d35-93d7-4bb2659c6bf3",
+  "pid": "master@210.28.132.167:5050",
+  "hostname": "n167",
+  "activated_slaves": 1.0,
+  "deactivated_slaves": 0.0,
+  "unreachable_slaves": 4.0,
+  "leader": "master@210.28.132.167:5050",
+  "leader_info": {
+    "id": "82311b96-de23-4d35-93d7-4bb2659c6bf3",
+    "pid": "master@210.28.132.167:5050",
+    "port": 5050,
+    "hostname": "n167"
+  },
+  "flags": {
+    "agent_ping_timeout": "15secs",
+    "agent_reregister_timeout": "10mins",
+    "allocation_interval": "1secs",
+    "allocator": "HierarchicalDRF",
+    "authenticate_agents": "false",
+    "authenticate_frameworks": "false",
+    "authenticate_http_frameworks": "false",
+    "authenticate_http_readonly": "false",
+    "authenticate_http_readwrite": "false",
+    "authenticators": "crammd5",
+    "authorizers": "local",
+    "filter_gpu_resources": "true",
+    "framework_sorter": "drf",
+    "help": "false",
+    "hostname_lookup": "true",
+    "http_authenticators": "basic",
+    "initialize_driver_logging": "true",
+    "ip": "210.28.132.167",
+    "log_auto_initialize": "true",
+    "logbufsecs": "0",
+    "logging_level": "INFO",
+    "max_agent_ping_timeouts": "5",
+    "max_completed_frameworks": "50",
+    "max_completed_tasks_per_framework": "1000",
+    "max_unreachable_tasks_per_framework": "1000",
+    "port": "5050",
+    "quiet": "false",
+    "recovery_agent_removal_limit": "100%",
+    "registry": "replicated_log",
+    "registry_fetch_timeout": "1mins",
+    "registry_gc_interval": "15mins",
+    "registry_max_agent_age": "2weeks",
+    "registry_max_agent_count": "102400",
+    "registry_store_timeout": "20secs",
+    "registry_strict": "false",
+    "root_submissions": "true",
+    "user_sorter": "drf",
+    "version": "false",
+    "webui_dir": "/root/mesos/build/../src/webui",
+    "work_dir": "/var/lib/mesos",
+    "zk_session_timeout": "10secs"
+  },
+  "slaves": [
+    {
+      "id": "a293b4d0-fcf9-4bc8-b4ee-908e20783a1c-S0",
+      "hostname": "n167",
+      "port": 5051,
+      "attributes": {
+
+      },
+      "pid": "slave(1)@210.28.132.167:5051",
+      "registered_time": 1510063800.47997,
+      "reregistered_time": 1510063800.48202,
+      "resources": {
+        "mem_revocable": 88569.0,
+        "cpus": 20.0,
+        "cpus_revocable": 15.707,
+        "gpus": 0.0,
+        "mem": 127634.0,
+        "disk": 185067.0,
+        "ports": "[31000-32000]"
+      },
+      "used_resources": {
+        "disk": 0.0,
+        "mem": 99942.0,
+        "gpus": 0.0,
+        "cpus": 19.5,
+        "ports": "[31412-31412]"
+      },
+      "offered_resources": {
+        "disk": 0.0,
+        "mem": 0.0,
+        "gpus": 0.0,
+        "cpus": 0.0
+      },
+      "reserved_resources": {
+
+      },
+      "unreserved_resources": {
+        "mem_revocable": 88569.0,
+        "cpus": 20.0,
+        "cpus_revocable": 15.707,
+        "gpus": 0.0,
+        "mem": 127634.0,
+        "disk": 185067.0,
+        "ports": "[31000-32000]"
+      },
+      "active": true,
+      "version": "1.5.0",
+      "capabilities": [
+        "MULTI_ROLE",
+        "HIERARCHICAL_ROLE",
+        "RESERVATION_REFINEMENT"
+      ]
+    }
+  ],
+  "recovered_slaves": [
+
+  ],
+  "frameworks": [
+    {
+      "id": "69c30f85-3c9b-4cb3-8cfd-b7ff5ec68e74-0001",
+      "name": "marathon",
+      "pid": "scheduler-cf376a7d-c513-4199-beaf-5aa1bf4d2c82@127.0.0.1:34218",
+      "used_resources": {
+        "cpus": 0.2,
+        "disk": 0,
+        "mem": 32,
+        "ports": "[11913-11913]"
+      },
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "capabilities": [],
+      "hostname": "default",
+      "webui_url": "http://default:8080",
+      "active": true,
+      "user": "root",
+      "failover_timeout": 604800,
+      "checkpoint": true,
+      "role": "*",
+      "registered_time": 1464362122.16334,
+      "unregistered_time": 0,
+      "resources": {
+        "cpus": 0.2,
+        "disk": 0,
+        "mem": 32,
+        "ports": "[11913-11913]"
+      },
+      "tasks": [
+        {
+          "id": "simple-webserver.857d518f-241e-11e6-a10b-02424e0f635b",
+          "name": "simple-webserver",
+          "framework_id": "69c30f85-3c9b-4cb3-8cfd-b7ff5ec68e74-0001",
+          "executor_id": "",
+          "slave_id": "69c30f85-3c9b-4cb3-8cfd-b7ff5ec68e74-S0",
+          "state": "TASK_RUNNING",
+          "resources": {
+            "cpus": 0.2,
+            "disk": 0,
+            "mem": 32,
+            "ports": "[11913-11913]"
+          },
+          "statuses": [
+            {
+              "state": "TASK_RUNNING",
+              "timestamp": 1464362423.43271,
+              "container_status": {
+                "container_id": {
+                  "value": "9fdf6891-90c9-4ace-8b9b-754d69bf68a8"
+                },
+                "network_infos": [
+                  {
+                    "ip_address": "192.168.99.100",
+                    "ip_addresses": [
+                      {
+                        "ip_address": "192.168.99.100"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "discovery": {
+            "visibility": "FRAMEWORK",
+            "name": "simple-webserver",
+            "ports": {
+              "ports": [
+                {
+                  "number": 11913,
+                  "protocol": "tcp"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "completed_tasks": [],
+      "offers": [],
+      "executors": []
+    },
+    {
+      "id": "69c30f85-3c9b-4cb3-8cfd-b7ff5ec68e74-0000",
+      "name": "chronos-2.4.0",
+      "pid": "scheduler-64832758-687c-42f4-9ebc-aa897f98d4c1@127.0.0.1:36725",
+      "used_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "capabilities": [],
+      "hostname": "default",
+      "webui_url": "http://default:8888",
+      "active": true,
+      "user": "root",
+      "failover_timeout": 604800,
+      "checkpoint": true,
+      "role": "*",
+      "registered_time": 1464362119.77012,
+      "unregistered_time": 0,
+      "resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "tasks": [],
+      "completed_tasks": [],
+      "offers": [],
+      "executors": []
+    }
+  ],
+  "completed_frameworks": [],
+  "orphan_tasks": [],
+  "unregistered_frameworks": []
+}
