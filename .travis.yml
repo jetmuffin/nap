@@ -16,3 +16,4 @@ install:
 
 script:
   - make test
+  - $HOME/gopath/bin/goveralls -repotoken 3erlrwOugY9ylBT08zLsYuA5ko4alG0bh
