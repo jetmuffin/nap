@@ -3,6 +3,24 @@
 	"ignore": "",
 	"package": [
 		{
+			"checksumSHA1": "nw1WV6VKeR3cVfca7lKOqIdGCj4=",
+			"path": "github.com/Sirupsen/logrus",
+			"revision": "59d0ca41e5faad81cac03f7a7d84ba80d9cc9673",
+			"revisionTime": "2017-07-06T13:44:07Z"
+		},
+		{
+			"checksumSHA1": "C4dMH5KclMFpxKbHUFniF45eaoY=",
+			"path": "github.com/gorilla/mux",
+			"revision": "4c1c3952b7d9d0a061a3fa7b36fd373ba0398ebc",
+			"revisionTime": "2017-04-27T04:12:50Z"
+		},
+		{
+			"checksumSHA1": "3u2Ghq0rHrLbQkO71qJC/oV0HL8=",
+			"path": "github.com/gorilla/websocket",
+			"revision": "3ab3a8b8831546bd18fd182c20687ca853b2bb13",
+			"revisionTime": "2016-12-15T22:53:35Z"
+		},
+		{
 			"checksumSHA1": "5S58pVVEL/NJvSY17z01u3+9eF8=",
 			"path": "github.com/urfave/cli",
 			"revision": "44cb242eeb4d76cc813fdc69ba5c4b224677e799",
