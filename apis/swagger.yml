@@ -1,0 +1,26 @@
+swagger: "2.0"
+info:
+  description: "API is an HTTP API served by NAP."
+  version: "0.0.1"
+  title: "NAP Platform API"
+basePath: "/"
+tags:
+- name: "console"
+  description: "Web terminal for containers."
+schemes:
+- "http"
+paths:
+  /console/hello:
+    get:
+      tags:
+      - "console"
+      summary: ""
+      description: ""
+      responses:
+        200:
+          description: "no error"
+          schema:
+            type: "string"
+            example: "OK"
+        500:
+          description: "server error"

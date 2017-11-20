@@ -1,7 +1,7 @@
 package main
 
-import "github.com/JetMuffin/nap/pkg/cmd"
+import "github.com/JetMuffin/nap/cli"
 
 func main() {
-	cmd.Main()
+	cli.Main()
 }

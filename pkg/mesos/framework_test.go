@@ -1,10 +1,9 @@
 package mesos
 
-
 import (
+	. "github.com/JetMuffin/nap/pkg/types"
 	"reflect"
 	"testing"
-	. "github.com/JetMuffin/nap/pkg/types"
 )
 
 func TestGetFrameworkByPrefix_WithFramework(t *testing.T) {

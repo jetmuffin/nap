@@ -17,4 +17,3 @@ func (c *Client) GetSlaveByID(slaves []MesosSlave, slaveID string) (*MesosSlave,
 
 	return nil, fmt.Errorf("No slave found with id \"%s\"", slaveID)
 }
-

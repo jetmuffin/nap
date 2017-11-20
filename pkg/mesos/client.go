@@ -1,13 +1,13 @@
 package mesos
 
 import (
-	"net/url"
-	"net/http"
-	"strings"
-	"sync"
-	"strconv"
 	"errors"
 	. "github.com/JetMuffin/nap/pkg/types"
+	"net/http"
+	"net/url"
+	"strconv"
+	"strings"
+	"sync"
 )
 
 // Client manages the communication with the Mesos cluster.
@@ -17,9 +17,9 @@ type Client struct {
 	// Master is the list of Mesos master nodes in the cluster.
 	Master []*url.URL
 	// Leader is the PID reference to the Leader of the Cluster (of Master URLs)
-	Leader          *Pid
-	State           *MesosState
-	Http            *http.Client
+	Leader *Pid
+	State  *MesosState
+	Http   *http.Client
 }
 
 // Pid is the process if per machine.

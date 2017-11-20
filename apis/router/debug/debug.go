@@ -1,7 +1,7 @@
 package debug
 
 import (
-	"github.com/JetMuffin/nap/pkg/api/router"
+	"github.com/JetMuffin/nap/apis/router"
 	"net/http/pprof"
 )
 

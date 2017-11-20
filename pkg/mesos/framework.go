@@ -2,8 +2,8 @@ package mesos
 
 import (
 	"fmt"
-	"strings"
 	. "github.com/JetMuffin/nap/pkg/types"
+	"strings"
 )
 
 // GetFrameworkByPrefix will return a framework that matches prefix.

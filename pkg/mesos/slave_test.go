@@ -1,10 +1,9 @@
 package mesos
 
-
 import (
+	. "github.com/JetMuffin/nap/pkg/types"
 	"reflect"
 	"testing"
-	. "github.com/JetMuffin/nap/pkg/types"
 )
 
 func TestGetSlaveByID_WithSlave(t *testing.T) {

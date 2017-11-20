@@ -1,26 +1,26 @@
 package console
 
 import (
-	"github.com/JetMuffin/nap/pkg/api/router"
+	"github.com/JetMuffin/nap/apis/router"
 	"github.com/gorilla/websocket"
 )
 
 type consoleRouter struct {
-	backend  Backend
-	exec     map[string]string
-	inputChan map[string] chan []byte
-	outputChan map[string] chan []byte
-	upgrader websocket.Upgrader
-	routes   []router.Route
+	backend    Backend
+	exec       map[string]string
+	inputChan  map[string]chan []byte
+	outputChan map[string]chan []byte
+	upgrader   websocket.Upgrader
+	routes     []router.Route
 }
 
 func NewRouter(b Backend) router.Router {
 	r := &consoleRouter{
-		backend:  b,
-		upgrader: websocket.Upgrader{},
-		exec:     make(map[string]string),
-		inputChan: make(map[string] chan []byte),
-		outputChan: make(map[string] chan []byte),
+		backend:    b,
+		upgrader:   websocket.Upgrader{},
+		exec:       make(map[string]string),
+		inputChan:  make(map[string]chan []byte),
+		outputChan: make(map[string]chan []byte),
 	}
 	r.initRoutes()
 	return r

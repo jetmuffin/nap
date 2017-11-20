@@ -1,18 +1,18 @@
 package docker
 
 import (
-	"strings"
+	"encoding/json"
+	"errors"
 	"fmt"
-	"net/url"
-	"net/http"
+	. "github.com/JetMuffin/nap/pkg/types"
 	"github.com/Sirupsen/logrus"
 	"io/ioutil"
-	"encoding/json"
-	"time"
-	"net/http/httputil"
 	"net"
-	"errors"
-	. "github.com/JetMuffin/nap/pkg/types"
+	"net/http"
+	"net/http/httputil"
+	"net/url"
+	"strings"
+	"time"
 )
 
 type DockerClient struct {

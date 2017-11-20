@@ -1,12 +1,12 @@
-package api
+package apis
 
 import (
+	"github.com/JetMuffin/nap/apis/router"
+	"github.com/JetMuffin/nap/apis/router/debug"
+	"github.com/Sirupsen/logrus"
+	"github.com/gorilla/mux"
 	"net"
 	"net/http"
-	"github.com/gorilla/mux"
-	"github.com/JetMuffin/nap/pkg/api/router"
-	"github.com/Sirupsen/logrus"
-	"github.com/JetMuffin/nap/pkg/api/router/debug"
 )
 
 // Config provides the configuration for the API server
@@ -27,7 +27,7 @@ type Server struct {
 
 func New(cfg *Config) *Server {
 	s := &Server{
-		cfg:      cfg,
+		cfg: cfg,
 	}
 	return s
 }
@@ -102,7 +102,7 @@ func (s *Server) serve() error {
 
 // gracefully shutdown.
 func (s *Server) Shutdown() error {
-	// If s.server is nil, api server is not running.
+	// If s.server is nil, apis server is not running.
 	if s.server != nil {
 		// NOTE(nmg): need golang 1.8+ to run this method.
 		return s.server.Shutdown(nil)

@@ -2,10 +2,10 @@ package mesos
 
 import (
 	"fmt"
-	"net/url"
 	"net/http"
-	"testing"
+	"net/url"
 	"reflect"
+	"testing"
 )
 
 func TestGetHTTPResponse(t *testing.T) {

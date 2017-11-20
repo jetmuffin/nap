@@ -1,12 +1,12 @@
 package mesos
 
 import (
-	"net/url"
-	"strings"
 	"fmt"
-	"testing"
 	"net/http"
+	"net/url"
 	"strconv"
+	"strings"
+	"testing"
 )
 
 func TestGetURLForStateFile(t *testing.T) {

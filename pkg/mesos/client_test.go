@@ -1,13 +1,13 @@
 package mesos
 
 import (
-	"net/url"
-	"net/http/httptest"
-	"net/http"
+	"fmt"
 	"io/ioutil"
+	"net/http"
+	"net/http/httptest"
+	"net/url"
 	"reflect"
 	"testing"
-	"fmt"
 )
 
 var (

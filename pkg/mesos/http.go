@@ -1,10 +1,10 @@
 package mesos
 
 import (
-	"net/url"
 	"errors"
-	"net/http"
 	"io/ioutil"
+	"net/http"
+	"net/url"
 )
 
 // GetHTTPResponseFromCluster will return a http.Response from one of the Mesos master nodes.
@@ -57,4 +57,3 @@ func (c *Client) GetBodyOfHTTPResponse(u *url.URL) ([]byte, error) {
 
 	return body, err
 }
-

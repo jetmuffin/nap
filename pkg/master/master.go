@@ -1,18 +1,18 @@
 package master
 
 import (
-	"github.com/JetMuffin/nap/pkg/config"
-	"github.com/JetMuffin/nap/pkg/api"
-	"net"
 	"fmt"
-	"github.com/JetMuffin/nap/pkg/api/router"
-	consoleRouter "github.com/JetMuffin/nap/pkg/api/router/console"
+	"github.com/JetMuffin/nap/apis"
+	"github.com/JetMuffin/nap/apis/router"
+	consoleRouter "github.com/JetMuffin/nap/apis/router/console"
+	"github.com/JetMuffin/nap/pkg/config"
 	"github.com/JetMuffin/nap/pkg/mesos"
+	"net"
 	"net/url"
 )
 
 type Master struct {
-	api         *api.Server
+	api         *apis.Server
 	listener    net.Listener
 	mesosClient *mesos.Client
 
@@ -26,10 +26,10 @@ func New(cfg *config.MasterConfig) (*Master, error) {
 		return nil, err
 	}
 
-	apiConfig := &api.Config{
+	apiConfig := &apis.Config{
 		LogLevel: cfg.LogLevel,
 	}
-	apiServer := api.New(apiConfig)
+	apiServer := apis.New(apiConfig)
 
 	return &Master{
 		cfg:      cfg,

@@ -1,12 +1,12 @@
 package mesos
 
 import (
-	"net/url"
-	"strconv"
 	"encoding/json"
+	. "github.com/JetMuffin/nap/pkg/types"
 	"io/ioutil"
 	"net/http"
-	. "github.com/JetMuffin/nap/pkg/types"
+	"net/url"
+	"strconv"
 )
 
 // GetStateFromCluster will return the current state of one of the cluster nodes.

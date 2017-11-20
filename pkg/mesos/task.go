@@ -1,10 +1,9 @@
 package mesos
 
-
 import (
+	"errors"
 	"fmt"
 	. "github.com/JetMuffin/nap/pkg/types"
-	"errors"
 )
 
 func (c *Client) ListTasks(filter func(t MesosTask) bool) []MesosTask {

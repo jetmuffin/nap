@@ -1,9 +1,9 @@
 package mesos
 
 import (
-	"testing"
-	"reflect"
 	. "github.com/JetMuffin/nap/pkg/types"
+	"reflect"
+	"testing"
 )
 
 func TestGetExecutorByID_WithExecutor(t *testing.T) {

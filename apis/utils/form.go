@@ -1,9 +1,9 @@
 package utils
 
 import (
-	"strings"
 	"net/http"
 	"strconv"
+	"strings"
 )
 
 // BoolValue transforms a form value in different formats into a boolean type.

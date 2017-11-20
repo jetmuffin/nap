@@ -1,10 +1,10 @@
-package cmd
+package cli
 
 import (
-	"github.com/urfave/cli"
 	"fmt"
-	"github.com/JetMuffin/nap/pkg/master"
 	"github.com/JetMuffin/nap/pkg/config"
+	"github.com/JetMuffin/nap/pkg/master"
+	"github.com/urfave/cli"
 )
 
 func Master() cli.Command {

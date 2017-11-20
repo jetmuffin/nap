@@ -11,7 +11,6 @@ type Router interface {
 
 type HandlerFunc func(w http.ResponseWriter, r *http.Request)
 
-
 type Route struct {
 	method  string
 	path    string

@@ -1,15 +1,15 @@
 package console
 
 import (
-	"net/http"
-	"github.com/JetMuffin/nap/pkg/api/utils"
+	"encoding/base64"
+	"encoding/json"
 	"errors"
+	"fmt"
+	"github.com/JetMuffin/nap/apis/utils"
 	"github.com/JetMuffin/nap/pkg/docker"
 	"github.com/Sirupsen/logrus"
-	"encoding/json"
-	"fmt"
-	"encoding/base64"
 	"github.com/gorilla/websocket"
+	"net/http"
 	"sync"
 )
 
