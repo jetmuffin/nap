@@ -14,6 +14,7 @@ type consoleRouter struct {
 	routes     []router.Route
 }
 
+// NewRouter initializes a new console router
 func NewRouter(b Backend) router.Router {
 	r := &consoleRouter{
 		backend:    b,
@@ -26,6 +27,7 @@ func NewRouter(b Backend) router.Router {
 	return r
 }
 
+// Routes returns the available routes to the console controller
 func (cr *consoleRouter) Routes() []router.Route {
 	return cr.routes
 }

@@ -35,22 +35,22 @@ func (cr *consoleRouter) handleTaskConsole(w http.ResponseWriter, req *http.Requ
 	}
 
 	// Get task
-	taskId := req.Form.Get("task_id")
-	task, err := cr.backend.GetTaskByID(taskId)
+	taskID := req.Form.Get("task_id")
+	task, err := cr.backend.GetTaskByID(taskID)
 	if err != nil {
-		c.WriteMessage(1, cr.handleError(errors.New("Task not found.")))
+		c.WriteMessage(1, cr.handleError(errors.New("task not found")))
 	}
 
 	// Get container id.
-	containerId, err := cr.backend.TaskContainerName(task)
+	containerID, err := cr.backend.TaskContainerName(task)
 	if err != nil {
-		c.WriteMessage(1, cr.handleError(errors.New("Task container not found, please check the task_id parameter.")))
+		c.WriteMessage(1, cr.handleError(errors.New("task container not found, please check the task_id parameter")))
 	}
 
 	// Get slave node
 	slave, err := cr.backend.TaskSlave(task)
 	if err != nil {
-		c.WriteMessage(1, cr.handleError(errors.New("Task is not running on any slave now.")))
+		c.WriteMessage(1, cr.handleError(errors.New("task is not running on any slave now")))
 	}
 
 	cli := docker.NewDockerClient(slave)
@@ -58,11 +58,11 @@ func (cr *consoleRouter) handleTaskConsole(w http.ResponseWriter, req *http.Requ
 	var lock sync.Mutex
 
 	input := make(chan []byte)
-	execId, err := cli.CreateExec(containerId, "/bin/bash")
+	execID, err := cli.CreateExec(containerID, "/bin/bash")
 	if err != nil {
 		logrus.Error(err)
 	}
-	output, err := cli.ExecStart(execId, input)
+	output, err := cli.ExecStart(execID, input)
 	if err != nil {
 		logrus.Error(err)
 	}
@@ -87,24 +87,24 @@ func (cr *consoleRouter) handleTaskConsole(w http.ResponseWriter, req *http.Requ
 			break
 		}
 
-		var message ConsoleMessage
+		var message Message
 		json.Unmarshal([]byte(rawMessage), &message)
 
 		switch message.Type {
 		case PingMessage:
 			c.WriteMessage(mt, cr.handlePing())
 		case InitMessage:
-			logrus.Infof("Console of task %s inited.", taskId)
+			logrus.Infof("Console of task %s inited.", taskID)
 		case InputMessage:
 			cr.handleInput(input, message.Content)
 		case ResizeMessage:
-			cr.handleResize(cli, execId, message.Content)
+			cr.handleResize(cli, execID, message.Content)
 		}
 	}
 }
 
 func (cr *consoleRouter) handlePing() []byte {
-	resp := ConsoleMessage{
+	resp := Message{
 		Type: PongMessage,
 	}
 	b, _ := json.Marshal(resp)
@@ -115,15 +115,15 @@ func (cr *consoleRouter) handleInput(input chan []byte, cmd string) {
 	input <- []byte(cmd)
 }
 
-func (cr *consoleRouter) handleResize(cli *docker.DockerClient, execId string, content string) {
+func (cr *consoleRouter) handleResize(cli *docker.DockerClient, execID string, content string) {
 	var resize ResizeContent
 	json.Unmarshal([]byte(content), &resize)
 
-	cli.ExecResize(execId, resize.Columns, resize.Rows)
+	cli.ExecResize(execID, resize.Columns, resize.Rows)
 }
 
 func (cr *consoleRouter) handleError(err error) []byte {
-	resp := ConsoleMessage{
+	resp := Message{
 		Type:    ErrorMessage,
 		Content: fmt.Sprintf("Failed to launch container terminal: %v", err),
 	}
@@ -132,7 +132,7 @@ func (cr *consoleRouter) handleError(err error) []byte {
 }
 
 func (cr *consoleRouter) handleResponse(data []byte) []byte {
-	resp := ConsoleMessage{
+	resp := Message{
 		Type:    OutputMessage,
 		Content: base64.StdEncoding.EncodeToString(data),
 	}

@@ -9,14 +9,14 @@ import (
 	"net/http"
 )
 
-// Config provides the configuration for the API server
+// Config provides the configuration for the API server.
 type Config struct {
 	LogLevel    string
 	CorsHeaders string
 	Version     string
 }
 
-// Server contains instance details for the server
+// Server contains instance details for the server.
 type Server struct {
 	cfg           *Config
 	server        *http.Server
@@ -25,6 +25,7 @@ type Server struct {
 	routerWrapper *mux.Router
 }
 
+// New returns a new api server.
 func New(cfg *Config) *Server {
 	s := &Server{
 		cfg: cfg,
@@ -32,6 +33,7 @@ func New(cfg *Config) *Server {
 	return s
 }
 
+// Accept accept listener.
 func (s *Server) Accept(addr string, listener net.Listener) {
 	s.server = &http.Server{
 		Addr: addr,
@@ -39,6 +41,7 @@ func (s *Server) Accept(addr string, listener net.Listener) {
 	s.listener = listener
 }
 
+// InitRouter init all routers.
 func (s *Server) InitRouter(routers ...router.Router) {
 	s.routers = append(s.routers, routers...)
 
@@ -100,7 +103,7 @@ func (s *Server) serve() error {
 	return nil
 }
 
-// gracefully shutdown.
+// Shutdown function gracefully shutdown.
 func (s *Server) Shutdown() error {
 	// If s.server is nil, apis server is not running.
 	if s.server != nil {
@@ -111,6 +114,7 @@ func (s *Server) Shutdown() error {
 	return nil
 }
 
+// Stop function stop server force.
 func (s *Server) Stop() error {
 	if s.server != nil {
 		return s.server.Close()

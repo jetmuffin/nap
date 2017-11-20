@@ -5,6 +5,7 @@ import (
 	"net/http/pprof"
 )
 
+// NewRouter initializes a new debug router
 func NewRouter() router.Router {
 	r := &debugRouter{}
 	r.initRoutes()
