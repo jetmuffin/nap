@@ -21,8 +21,18 @@ build: clean
 docker:
 	docker build --tag nap:$(shell git rev-parse --short HEAD) .
 
-test:
-	go test -v -cover ./pkg/...
-
 clean:
 	rm -rfv ./bin/*
+
+fmt:
+	@echo $@
+	@test -z "$$(gofmt -s -l . 2>/dev/null | grep -Fv 'vendor/' | grep -v ".pb.go$$"| tee /dev/stderr)" || \
+		(echo "please format Go code with 'gofmt -s -w .'" && false)
+
+lint:
+	@echo $@
+	@test -z "$$(golint ./... | grep -Fv 'vendor/' | grep -v ".pb.go:" | tee /dev/stderr)"
+
+test:
+	@echo $@
+	@go test -v -cover ./pkg/...
