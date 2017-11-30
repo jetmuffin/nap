@@ -16,7 +16,7 @@ endif
 default: build
 
 build: clean
-	CGO_ENABLED=${CGO_ENABLED} go build -v -a -ldflags "${GO_LDFLAGS}" -o bin/nap pkg/main.go
+	CGO_ENABLED=${CGO_ENABLED} go build -v -a -ldflags "${GO_LDFLAGS}" -o bin/nap main.go
 
 docker:
 	docker build --tag nap:$(shell git rev-parse --short HEAD) .
