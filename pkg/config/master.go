@@ -9,6 +9,7 @@ type MasterConfig struct {
 	ListenAddr string   `json:"listen_addr"`
 	MesosAddr  *url.URL `json:"mesos_addr"`
 	LogLevel   string
+	OAuthAddr string
 }
 
 func NewMasterConfig(c *cli.Context) (*MasterConfig, error) {
@@ -22,6 +23,8 @@ func NewMasterConfig(c *cli.Context) (*MasterConfig, error) {
 	if err != nil {
 		return cfg, err
 	}
+
+	cfg.OAuthAddr = c.String("oauth")
 
 	if c.String("loglevel") != "" {
 		cfg.LogLevel = c.String("loglevel")

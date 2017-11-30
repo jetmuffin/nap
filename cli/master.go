@@ -19,6 +19,7 @@ func Master() cli.Command {
 		FlagListenAddr(),
 		FlagMesosAddr(),
 		FlagLogLevel(),
+		FlagOAuthAddr(),
 	}
 
 	return cmd

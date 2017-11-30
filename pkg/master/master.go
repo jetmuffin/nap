@@ -5,6 +5,8 @@ import (
 	"github.com/JetMuffin/nap/apis"
 	"github.com/JetMuffin/nap/apis/router"
 	consoleRouter "github.com/JetMuffin/nap/apis/router/console"
+	authRouter "github.com/JetMuffin/nap/apis/router/auth"
+	mesosRouter "github.com/JetMuffin/nap/apis/router/mesos"
 	"github.com/JetMuffin/nap/pkg/config"
 	"github.com/JetMuffin/nap/pkg/mesos"
 	"net"
@@ -69,6 +71,8 @@ func (m *Master) Stop() {
 func (m *Master) initRouter() {
 	routers := []router.Router{
 		consoleRouter.NewRouter(m.mesosClient),
+		authRouter.NewRouter(m.cfg.OAuthAddr),
+		mesosRouter.NewRouter(),
 	}
 
 	m.api.InitRouter(routers...)
