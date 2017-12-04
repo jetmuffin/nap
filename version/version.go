@@ -8,7 +8,7 @@ import (
 )
 
 var (
-	version   string
+	version   = "0.1.0"
 	buildDate string
 	gitCommit string
 )
