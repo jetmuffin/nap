@@ -1,0 +1,234 @@
+{
+  "tasks": [
+    {
+      "id": "sys_letsencrypt.bbcf74e6-d8cd-11e7-b895-02425100ffe5",
+      "name": "letsencrypt.sys",
+      "framework_id": "df6a4bb2-c9c4-4a15-ab93-16a70ddb6289-12478",
+      "executor_id": "",
+      "slave_id": "3a366cc6-eb32-4533-92f5-1937c5cbaa88-S8",
+      "state": "TASK_RUNNING",
+      "resources": {
+        "disk": 0,
+        "mem": 512,
+        "gpus": 0,
+        "cpus": 0.1,
+        "ports": "[31445-31445]"
+      },
+      "role": "*",
+      "statuses": [
+        {
+          "state": "TASK_RUNNING",
+          "timestamp": 1512376379.95871,
+          "labels": [
+            {
+              "key": "Docker.NetworkSettings.IPAddress",
+              "value": "172.17.0.3"
+            }
+          ],
+          "container_status": {
+            "container_id": {
+              "value": "55e44c35-1d83-4931-ba62-2a1517ce6df1"
+            },
+            "network_infos": [
+              {
+                "ip_addresses": [
+                  {
+                    "ip_address": "172.17.0.3"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "labels": [
+        {
+          "key": "HAPROXY_0_VHOST",
+          "value": "mq.weigulu.com,auth.njuics.cn,longman.njucs.club,fitech.njucs.club"
+        },
+        {
+          "key": "HAPROXY_GROUP",
+          "value": "external"
+        },
+        {
+          "key": "HAPROXY_0_PATH",
+          "value": "/.well-known/acme-challenge"
+        }
+      ],
+      "discovery": {
+        "visibility": "FRAMEWORK",
+        "name": "letsencrypt.sys",
+        "ports": {
+          "ports": [
+            {
+              "number": 31445,
+              "name": "default",
+              "protocol": "tcp",
+              "labels": {
+                "labels": [
+                  {
+                    "key": "network-scope",
+                    "value": "host"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "container": {
+        "type": "DOCKER",
+        "volumes": [
+          {
+            "mode": "RW",
+            "container_path": "/etc/letsencrypt",
+            "host_path": "/exports/software/letsencrypt"
+          }
+        ],
+        "docker": {
+          "image": "registry.njuics.cn/mesos/letsencrypt:v1.0.3",
+          "network": "BRIDGE",
+          "port_mappings": [
+            {
+              "host_port": 31445,
+              "container_port": 80,
+              "protocol": "tcp"
+            }
+          ],
+          "privileged": false,
+          "parameters": [
+            {
+              "key": "label",
+              "value": "MESOS_TASK_ID=sys_letsencrypt.bbcf74e6-d8cd-11e7-b895-02425100ffe5"
+            }
+          ],
+          "force_pull_image": false
+        }
+      }
+    },
+    {
+      "id": "sys_letsencrypt.371d93d5-d8cd-11e7-b895-02425100ffe5",
+      "name": "letsencrypt.sys",
+      "framework_id": "df6a4bb2-c9c4-4a15-ab93-16a70ddb6289-12478",
+      "executor_id": "",
+      "slave_id": "39da2913-5fdf-4e5a-829f-af2318fbf175-S0",
+      "state": "TASK_FAILED",
+      "resources": {
+        "disk": 0,
+        "mem": 512,
+        "gpus": 0,
+        "cpus": 0.1,
+        "ports": "[31168-31168]"
+      },
+      "role": "*",
+      "statuses": [
+        {
+          "state": "TASK_RUNNING",
+          "timestamp": 1512376160.35157,
+          "labels": [
+            {
+              "key": "Docker.NetworkSettings.IPAddress",
+              "value": "172.17.0.15"
+            }
+          ],
+          "container_status": {
+            "container_id": {
+              "value": "f2c176eb-42e6-4b18-b6a3-2a8e88649691"
+            },
+            "network_infos": [
+              {
+                "ip_addresses": [
+                  {
+                    "ip_address": "172.17.0.15"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "state": "TASK_FAILED",
+          "timestamp": 1512376377.46878,
+          "container_status": {
+            "container_id": {
+              "value": "f2c176eb-42e6-4b18-b6a3-2a8e88649691"
+            },
+            "network_infos": [
+              {
+                "ip_addresses": [
+                  {
+                    "ip_address": "114.212.189.139"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "labels": [
+        {
+          "key": "HAPROXY_0_VHOST",
+          "value": "mq.weigulu.com,auth.njuics.cn,longman.njucs.club,fitech.njucs.club"
+        },
+        {
+          "key": "HAPROXY_GROUP",
+          "value": "external"
+        },
+        {
+          "key": "HAPROXY_0_PATH",
+          "value": "/.well-known/acme-challenge"
+        }
+      ],
+      "discovery": {
+        "visibility": "FRAMEWORK",
+        "name": "letsencrypt.sys",
+        "ports": {
+          "ports": [
+            {
+              "number": 31168,
+              "name": "default",
+              "protocol": "tcp",
+              "labels": {
+                "labels": [
+                  {
+                    "key": "network-scope",
+                    "value": "host"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "container": {
+        "type": "DOCKER",
+        "volumes": [
+          {
+            "mode": "RW",
+            "container_path": "/etc/letsencrypt",
+            "host_path": "/exports/software/letsencrypt"
+          }
+        ],
+        "docker": {
+          "image": "registry.njuics.cn/mesos/letsencrypt:v1.0.3",
+          "network": "BRIDGE",
+          "port_mappings": [
+            {
+              "host_port": 31168,
+              "container_port": 80,
+              "protocol": "tcp"
+            }
+          ],
+          "privileged": false,
+          "parameters": [
+            {
+              "key": "label",
+              "value": "MESOS_TASK_ID=sys_letsencrypt.371d93d5-d8cd-11e7-b895-02425100ffe5"
+            }
+          ],
+          "force_pull_image": false
+        }
+      }
+    }
+  ]
+}

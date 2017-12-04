@@ -1,0 +1,46 @@
+{
+  "frameworks": [
+    {
+      "id": "8c527af7-e41b-4c59-a93c-2c5fee263df8-0000",
+      "name": "chronos",
+      "pid": "scheduler-a4202cc0-48f5-41ef-ad9e-66d14813b26b@210.28.132.167:42157",
+      "used_resources": {
+        "disk": 0,
+        "mem": 0,
+        "gpus": 0,
+        "cpus": 0
+      },
+      "offered_resources": {
+        "disk": 0,
+        "mem": 0,
+        "gpus": 0,
+        "cpus": 0
+      },
+      "capabilities": [],
+      "hostname": "n167",
+      "webui_url": "http://n167:4400",
+      "active": true,
+      "connected": true,
+      "recovered": false,
+      "user": "root",
+      "failover_timeout": 604800,
+      "checkpoint": true,
+      "registered_time": 1512101841.64789,
+      "unregistered_time": 0,
+      "resources": {
+        "disk": 0,
+        "mem": 0,
+        "gpus": 0,
+        "cpus": 0
+      },
+      "role": "*",
+      "tasks": [],
+      "unreachable_tasks": [],
+      "completed_tasks": [],
+      "offers": [],
+      "executors": []
+    }
+  ],
+  "completed_frameworks": [],
+  "unregistered_frameworks": []
+}

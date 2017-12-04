@@ -42,13 +42,13 @@ func (cr *consoleRouter) handleTaskConsole(w http.ResponseWriter, req *http.Requ
 	}
 
 	// Get container id.
-	containerID, err := cr.backend.TaskContainerName(task)
+	containerID, err := cr.backend.GetTaskContainerName(task)
 	if err != nil {
 		c.WriteMessage(1, cr.handleError(errors.New("task container not found, please check the task_id parameter")))
 	}
 
 	// Get slave node
-	slave, err := cr.backend.TaskSlave(task)
+	slave, err := cr.backend.GetSlaveByID(task.SlaveID)
 	if err != nil {
 		c.WriteMessage(1, cr.handleError(errors.New("task is not running on any slave now")))
 	}

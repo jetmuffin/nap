@@ -1,17 +1,17 @@
 package docker
 
 import (
-	"strings"
-	"fmt"
-	"net/url"
-	"net/http/httputil"
-	"time"
-	"net/http"
-	"io/ioutil"
 	"encoding/json"
 	"errors"
-	"net"
+	"fmt"
 	"github.com/Sirupsen/logrus"
+	"io/ioutil"
+	"net"
+	"net/http"
+	"net/http/httputil"
+	"net/url"
+	"strings"
+	"time"
 )
 
 func (client *DockerClient) CreateExec(id string, cmd string) (string, error) {

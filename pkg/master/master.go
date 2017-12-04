@@ -4,13 +4,12 @@ import (
 	"fmt"
 	"github.com/JetMuffin/nap/apis"
 	"github.com/JetMuffin/nap/apis/router"
-	consoleRouter "github.com/JetMuffin/nap/apis/router/console"
 	authRouter "github.com/JetMuffin/nap/apis/router/auth"
+	consoleRouter "github.com/JetMuffin/nap/apis/router/console"
 	mesosRouter "github.com/JetMuffin/nap/apis/router/mesos"
 	"github.com/JetMuffin/nap/pkg/config"
 	"github.com/JetMuffin/nap/pkg/mesos"
 	"net"
-	"net/url"
 )
 
 type Master struct {
@@ -42,11 +41,7 @@ func New(cfg *config.MasterConfig) (*Master, error) {
 }
 
 func (m *Master) Start() error {
-	m.mesosClient = mesos.NewClient([]*url.URL{m.cfg.MesosAddr}, nil)
-	_, err := m.mesosClient.DetermineLeader()
-	if err != nil {
-		return fmt.Errorf("Cannot connect to mesos master.")
-	}
+	m.mesosClient = mesos.NewClient(m.cfg.MesosAddr, nil)
 
 	m.api.Accept(m.cfg.ListenAddr, m.listener)
 	m.initRouter()

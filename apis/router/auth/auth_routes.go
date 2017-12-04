@@ -1,19 +1,19 @@
 package auth
 
 import (
-	"net/http"
+	"errors"
 	"fmt"
 	"github.com/JetMuffin/nap/apis/utils"
-	"errors"
-	"net/url"
 	"io/ioutil"
+	"net/http"
+	"net/url"
 )
 
 const (
-	ClientID  =  "dc-njuics-cn"
+	ClientID     = "dc-njuics-cn"
 	ClientSecret = "dcos-nap"
-	GrantType = "authorization_code"
-	RedirectUrl = "http://localhost:4200"
+	GrantType    = "authorization_code"
+	RedirectUrl  = "http://localhost:4200"
 )
 
 func (ar *authRouter) handleAuthorize(w http.ResponseWriter, req *http.Request) {

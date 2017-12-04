@@ -1,10 +1,10 @@
 package tests
 
 import (
-	"github.com/go-check/check"
-	"net"
 	"github.com/JetMuffin/nap/apis"
 	"github.com/JetMuffin/nap/apis/router"
+	"github.com/go-check/check"
+	"net"
 )
 
 type NapAPISuite struct {
@@ -18,7 +18,7 @@ func init() {
 	check.Suite(&NapAPISuite{})
 }
 
-func initRouter() []router.Router{
+func initRouter() []router.Router {
 	routers := []router.Router{}
 
 	return routers

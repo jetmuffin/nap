@@ -48,7 +48,6 @@
     "max_unreachable_tasks_per_framework": "1000",
     "port": "5050",
     "quiet": "false",
-    "recovery_agent_removal_limit": "100%",
     "registry": "replicated_log",
     "registry_fetch_timeout": "1mins",
     "registry_gc_interval": "15mins",
@@ -69,7 +68,6 @@
       "hostname": "n167",
       "port": 5051,
       "attributes": {
-
       },
       "pid": "slave(1)@210.28.132.167:5051",
       "registered_time": 1510063800.47997,
@@ -97,7 +95,6 @@
         "cpus": 0.0
       },
       "reserved_resources": {
-
       },
       "unreserved_resources": {
         "mem_revocable": 88569.0,
@@ -118,7 +115,6 @@
     }
   ],
   "recovered_slaves": [
-
   ],
   "frameworks": [
     {

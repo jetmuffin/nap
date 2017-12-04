@@ -21,8 +21,8 @@ func FlagMesosAddr() cli.Flag {
 
 func FlagOAuthAddr() cli.Flag {
 	return cli.StringFlag{
-		Name: "oauth",
-		Usage: "oauth server address.",
+		Name:   "oauth",
+		Usage:  "oauth server address.",
 		EnvVar: "NAP_OAUTH_ADDR",
 		//Value: "127.0.0.1:3000",
 	}

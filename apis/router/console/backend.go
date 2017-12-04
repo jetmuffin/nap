@@ -1,12 +1,12 @@
 package console
 
 import (
-	mesos "github.com/JetMuffin/nap/pkg/types"
+	"github.com/JetMuffin/nap/pkg/mesos"
 )
 
 // Backend abstracts a console manager
 type Backend interface {
-	GetTaskByID(taskID string) (mesos.MesosTask, error)
-	TaskContainerName(task mesos.MesosTask) (string, error)
-	TaskSlave(task mesos.MesosTask) (*mesos.MesosSlave, error)
+	GetTaskByID(taskID string) (mesos.Task, error)
+	GetTaskContainerName(task mesos.Task) (string, error)
+	GetSlaveByID(slaveID string) (mesos.Slave, error)
 }

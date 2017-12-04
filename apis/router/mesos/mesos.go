@@ -3,7 +3,7 @@ package mesos
 import "github.com/JetMuffin/nap/apis/router"
 
 type mesosRouter struct {
-	routes    []router.Route
+	routes []router.Route
 }
 
 // NewRouter initializes a new mesos router

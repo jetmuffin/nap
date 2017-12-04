@@ -1,0 +1,180 @@
+{
+  "slaves": [
+    {
+      "id": "348a8c33-f98d-4ba2-bd4b-03b278332a65-S4",
+      "hostname": "n170",
+      "port": 5051,
+      "attributes": {},
+      "pid": "slave(1)@210.28.132.170:5051",
+      "registered_time": 1512141767.17833,
+      "reregistered_time": 1512141767.17839,
+      "resources": {
+        "disk": 184491,
+        "mem": 127634,
+        "gpus": 2,
+        "cpus": 20,
+        "ports": "[31000-32000]"
+      },
+      "used_resources": {
+        "disk": 0,
+        "mem": 0,
+        "gpus": 0,
+        "cpus": 0
+      },
+      "offered_resources": {
+        "disk": 0,
+        "mem": 0,
+        "gpus": 0,
+        "cpus": 0
+      },
+      "reserved_resources": {},
+      "unreserved_resources": {
+        "disk": 184491,
+        "mem": 127634,
+        "gpus": 2,
+        "cpus": 20,
+        "ports": "[31000-32000]"
+      },
+      "active": true,
+      "version": "1.3.0",
+      "capabilities": [
+        "MULTI_ROLE"
+      ],
+      "reserved_resources_full": {},
+      "used_resources_full": [],
+      "offered_resources_full": []
+    },
+    {
+      "id": "348a8c33-f98d-4ba2-bd4b-03b278332a65-S1",
+      "hostname": "n169",
+      "port": 5051,
+      "attributes": {},
+      "pid": "slave(1)@210.28.132.169:5051",
+      "registered_time": 1512141528.91652,
+      "reregistered_time": 1512141528.91657,
+      "resources": {
+        "disk": 184491,
+        "mem": 127634,
+        "gpus": 2,
+        "cpus": 20,
+        "ports": "[31000-32000]"
+      },
+      "used_resources": {
+        "disk": 0,
+        "mem": 0,
+        "gpus": 0,
+        "cpus": 0
+      },
+      "offered_resources": {
+        "disk": 0,
+        "mem": 0,
+        "gpus": 0,
+        "cpus": 0
+      },
+      "reserved_resources": {},
+      "unreserved_resources": {
+        "disk": 184491,
+        "mem": 127634,
+        "gpus": 2,
+        "cpus": 20,
+        "ports": "[31000-32000]"
+      },
+      "active": true,
+      "version": "1.3.0",
+      "capabilities": [
+        "MULTI_ROLE"
+      ],
+      "reserved_resources_full": {},
+      "used_resources_full": [],
+      "offered_resources_full": []
+    },
+    {
+      "id": "348a8c33-f98d-4ba2-bd4b-03b278332a65-S2",
+      "hostname": "n168",
+      "port": 5051,
+      "attributes": {},
+      "pid": "slave(1)@210.28.132.168:5051",
+      "registered_time": 1512141507.77993,
+      "reregistered_time": 1512141507.78,
+      "resources": {
+        "disk": 184491,
+        "mem": 127634,
+        "gpus": 2,
+        "cpus": 20,
+        "ports": "[31000-32000]"
+      },
+      "used_resources": {
+        "disk": 0,
+        "mem": 0,
+        "gpus": 0,
+        "cpus": 0
+      },
+      "offered_resources": {
+        "disk": 0,
+        "mem": 0,
+        "gpus": 0,
+        "cpus": 0
+      },
+      "reserved_resources": {},
+      "unreserved_resources": {
+        "disk": 184491,
+        "mem": 127634,
+        "gpus": 2,
+        "cpus": 20,
+        "ports": "[31000-32000]"
+      },
+      "active": true,
+      "version": "1.3.0",
+      "capabilities": [
+        "MULTI_ROLE"
+      ],
+      "reserved_resources_full": {},
+      "used_resources_full": [],
+      "offered_resources_full": []
+    },
+    {
+      "id": "348a8c33-f98d-4ba2-bd4b-03b278332a65-S3",
+      "hostname": "n167",
+      "port": 5051,
+      "attributes": {},
+      "pid": "slave(1)@210.28.132.167:5051",
+      "registered_time": 1512100461.23866,
+      "resources": {
+        "disk": 185067,
+        "mem": 127634,
+        "gpus": 2,
+        "cpus": 20,
+        "ports": "[31000-32000]"
+      },
+      "used_resources": {
+        "disk": 0,
+        "mem": 0,
+        "gpus": 0,
+        "cpus": 0
+      },
+      "offered_resources": {
+        "disk": 0,
+        "mem": 0,
+        "gpus": 0,
+        "cpus": 0
+      },
+      "reserved_resources": {},
+      "unreserved_resources": {
+        "disk": 185067,
+        "mem": 127634,
+        "gpus": 2,
+        "cpus": 20,
+        "ports": "[31000-32000]"
+      },
+      "active": true,
+      "version": "1.3.0",
+      "capabilities": [
+        "MULTI_ROLE"
+      ],
+      "reserved_resources_full": {},
+      "used_resources_full": [],
+      "offered_resources_full": []
+    }
+  ],
+  "recovered_slaves": []
+}

@@ -3,15 +3,24 @@ package docker
 import (
 	"encoding/json"
 	"fmt"
-	. "github.com/JetMuffin/nap/pkg/types"
+	"github.com/JetMuffin/nap/pkg/mesos"
 	"github.com/Sirupsen/logrus"
 	"io/ioutil"
 	"net/http"
-
 )
 
 type DockerClient struct {
 	Host string
+}
+
+type Container struct {
+	Id      string
+	Names   []string
+	Image   string
+	ImageID string
+	Command string
+	Created int64
+	Status  string
 }
 
 type ContainerResponse struct {
@@ -32,7 +41,7 @@ type DockerContainer struct {
 	Status  string
 }
 
-func NewDockerClient(slave *MesosSlave) *DockerClient {
+func NewDockerClient(slave mesos.Slave) *DockerClient {
 	endpoint := fmt.Sprintf("http://%s:%d", slave.Hostname, 2375)
 	return &DockerClient{
 		Host: endpoint,
@@ -52,5 +61,3 @@ func (client *DockerClient) ListContainers() []Container {
 	json.Unmarshal(body, &items)
 	return items
 }
-
-

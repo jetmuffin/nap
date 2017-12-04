@@ -1,35 +1,71 @@
-package types
+package mesos
+
+// URL represents a single URL
+type URL struct {
+	Scheme     string      `json:"scheme"`
+	Address    Address     `json:"address"`
+	Path       string      `json:"path"`
+	Parameters []Parameter `json:"parameters"`
+}
+
+// Address represents a single address.
+// e.g. from a Slave or from a Master
+type Address struct {
+	Hostname string `json:"hostname"`
+	IP       string `json:"ip"`
+	Port     int    `json:"port"`
+}
+
+// Parameter represents a single key / value pair for parameters
+type Parameter struct {
+	Key   string `json:"key"`
+	Value string `json:"value"`
+}
+
+// Label represents a single key / value pair for labeling
+type Label struct {
+	Key   string `json:"key"`
+	Value string `json:"value"`
+}
+
+// Resources represents a resource type for a task
+type Resources struct {
+	CPUs  float64 `json:"cpus"`
+	Disk  float64 `json:"disk"`
+	Mem   float64 `json:"mem"`
+	Ports string  `json:"ports"`
+}
 
 // State represents the JSON from the state.json of a mesos node
-type MesosState struct {
-	Version                string           `json:"version"`
-	GitSHA                 string           `json:"git_sha"`
-	GitTag                 string           `json:"git_tag"`
-	BuildDate              string           `json:"build_date"`
-	BuildTime              float64          `json:"build_time"`
-	BuildUser              string           `json:"build_user"`
-	StartTime              float64          `json:"start_time"`
-	ElectedTime            float64          `json:"elected_time"`
-	ID                     string           `json:"id"`
-	PID                    string           `json:"pid"`
-	Hostname               string           `json:"hostname"`
-	ActivatedSlaves        float64          `json:"activated_slaves"`
-	DeactivatedSlaves      float64          `json:"deactivated_slaves"`
-	Cluster                string           `json:"cluster"`
-	Leader                 string           `json:"leader"`
-	CompletedFrameworks    []MesosFramework `json:"completed_frameworks"`
-	OrphanTasks            []MesosTask      `json:"orphan_tasks"`
-	UnregisteredFrameworks []string         `json:"unregistered_frameworks"`
-	Flags                  MesosFlags       `json:"flags"`
-	Slaves                 []MesosSlave     `json:"slaves"`
-	Frameworks             []MesosFramework `json:"frameworks"`
-	GitBranch              string           `json:"git_branch"`
-	LogDir                 string           `json:"log_dir"`
-	ExternalLogFile        string           `json:"external_log_file"`
+type State struct {
+	Version                string      `json:"version"`
+	GitSHA                 string      `json:"git_sha"`
+	GitTag                 string      `json:"git_tag"`
+	BuildDate              string      `json:"build_date"`
+	BuildTime              float64     `json:"build_time"`
+	BuildUser              string      `json:"build_user"`
+	StartTime              float64     `json:"start_time"`
+	ElectedTime            float64     `json:"elected_time"`
+	ID                     string      `json:"id"`
+	PID                    string      `json:"pid"`
+	Hostname               string      `json:"hostname"`
+	ActivatedSlaves        float64     `json:"activated_slaves"`
+	DeactivatedSlaves      float64     `json:"deactivated_slaves"`
+	Cluster                string      `json:"cluster"`
+	Leader                 string      `json:"leader"`
+	CompletedFrameworks    []Framework `json:"completed_frameworks"`
+	OrphanTasks            []Task      `json:"orphan_tasks"`
+	UnregisteredFrameworks []string    `json:"unregistered_frameworks"`
+	Flags                  Flags       `json:"flags"`
+	Slaves                 []Slave     `json:"slaves"`
+	Frameworks             []Framework `json:"frameworks"`
+	GitBranch              string      `json:"git_branch"`
+	LogDir                 string      `json:"log_dir"`
+	ExternalLogFile        string      `json:"external_log_file"`
 }
 
 // Flags represents the flags of a mesos state
-type MesosFlags struct {
+type Flags struct {
 	AppcStoreDir                     string `json:"appc_store_dir"`
 	AllocationInterval               string `json:"allocation_interval"`
 	Allocator                        string `json:"allocator"`
@@ -117,35 +153,35 @@ type MesosFlags struct {
 }
 
 // Framework represent a single framework of a mesos node
-type MesosFramework struct {
-	Active             bool            `json:"active"`
-	Checkpoint         bool            `json:"checkpoint"`
-	CompletedTasks     []MesosTask     `json:"completed_tasks"`
-	Executors          []MesosExecutor `json:"executors"`
-	CompletedExecutors []MesosExecutor `json:"completed_executors"`
-	FailoverTimeout    float64         `json:"failover_timeout"`
-	Hostname           string          `json:"hostname"`
-	ID                 string          `json:"id"`
-	Name               string          `json:"name"`
-	PID                string          `json:"pid"`
-	OfferedResources   Resources       `json:"offered_resources"`
-	Offers             []MesosOffer    `json:"offers"`
-	RegisteredTime     float64         `json:"registered_time"`
-	ReregisteredTime   float64         `json:"reregistered_time"`
-	Resources          Resources       `json:"resources"`
-	Role               string          `json:"role"`
-	Tasks              []MesosTask     `json:"tasks"`
-	UnregisteredTime   float64         `json:"unregistered_time"`
-	UsedResources      Resources       `json:"used_resources"`
-	User               string          `json:"user"`
-	WebuiURL           string          `json:"webui_url"`
-	Labels             []Label         `json:"label"`
+type Framework struct {
+	Active             bool       `json:"active"`
+	Checkpoint         bool       `json:"checkpoint"`
+	CompletedTasks     []Task     `json:"completed_tasks"`
+	Executors          []Executor `json:"executors"`
+	CompletedExecutors []Executor `json:"completed_executors"`
+	FailoverTimeout    float64    `json:"failover_timeout"`
+	Hostname           string     `json:"hostname"`
+	ID                 string     `json:"id"`
+	Name               string     `json:"name"`
+	PID                string     `json:"pid"`
+	OfferedResources   Resources  `json:"offered_resources"`
+	Offers             []Offer    `json:"offers"`
+	RegisteredTime     float64    `json:"registered_time"`
+	ReregisteredTime   float64    `json:"reregistered_time"`
+	Resources          Resources  `json:"resources"`
+	Role               string     `json:"role"`
+	Tasks              []Task     `json:"tasks"`
+	UnregisteredTime   float64    `json:"unregistered_time"`
+	UsedResources      Resources  `json:"used_resources"`
+	User               string     `json:"user"`
+	WebuiURL           string     `json:"webui_url"`
+	Labels             []Label    `json:"label"`
 	// Missing fields
 	// TODO: "capabilities": [],
 }
 
 // Offer represents a single offer from a Mesos Slave to a Mesos master
-type MesosOffer struct {
+type Offer struct {
 	ID          string            `json:"id"`
 	FrameworkID string            `json:"framework_id"`
 	SlaveID     string            `json:"slave_id"`
@@ -156,7 +192,7 @@ type MesosOffer struct {
 }
 
 // Task represent a single Mesos task
-type MesosTask struct {
+type Task struct {
 	// Missing fields
 	// TODO: "labels": [],
 	ExecutorID  string        `json:"executor_id"`
@@ -225,23 +261,24 @@ type ContainerStatus struct {
 	ContainerID  ContainerID   `json:"container_id"`
 }
 
+// ContainerID represents ID of a container
 type ContainerID struct {
 	Value string `json:"value"`
 }
 
 // NetworkInfo represents information about the network of a container
 type NetworkInfo struct {
-	IpAddress   string      `json:"ip_address"`
-	IpAddresses []IpAddress `json:"ip_addresses"`
+	IPAddress   string      `json:"ip_address"`
+	IPAddresses []IPAddress `json:"ip_addresses"`
 }
 
-// IpAddress represents a single IpAddress
-type IpAddress struct {
-	IpAddress string `json:"ip_address"`
+// IPAddress represents a single IpAddress
+type IPAddress struct {
+	IPAddress string `json:"ip_address"`
 }
 
 // Slave represents a single mesos slave node
-type MesosSlave struct {
+type Slave struct {
 	Active              bool                   `json:"active"`
 	Hostname            string                 `json:"hostname"`
 	ID                  string                 `json:"id"`
@@ -257,20 +294,20 @@ type MesosSlave struct {
 }
 
 // Executor represents a single executor of a framework
-type MesosExecutor struct {
-	CompletedTasks []MesosTask `json:"completed_tasks"`
-	Container      string      `json:"container"`
-	Directory      string      `json:"directory"`
-	ID             string      `json:"id"`
-	Name           string      `json:"name"`
-	Resources      Resources   `json:"resources"`
-	Source         string      `json:"source"`
-	QueuedTasks    []MesosTask `json:"queued_tasks"`
-	Tasks          []MesosTask `json:"tasks"`
+type Executor struct {
+	CompletedTasks []Task    `json:"completed_tasks"`
+	Container      string    `json:"container"`
+	Directory      string    `json:"directory"`
+	ID             string    `json:"id"`
+	Name           string    `json:"name"`
+	Resources      Resources `json:"resources"`
+	Source         string    `json:"source"`
+	QueuedTasks    []Task    `json:"queued_tasks"`
+	Tasks          []Task    `json:"tasks"`
 }
 
 // System represents a system stats of a node
-type MesosSystem struct {
+type System struct {
 	AvgLoad15min  float64 `json:"avg_load_15min"`
 	AvgLoad1min   float64 `json:"avg_load_1min"`
 	AvgLoad5min   float64 `json:"avg_load_5min"`
@@ -280,7 +317,7 @@ type MesosSystem struct {
 }
 
 // MetricsSnapshot represents the metrics of a node
-type MesosMetricsSnapshot struct {
+type MetricsSnapshot struct {
 	AllocatorEventQueueDispatches                          float64 `json:"allocator/event_queue_dispatches"`
 	AllocatorMesosAllocationRunMs                          float64 `json:"allocator/mesos/allocation_run_ms"`
 	AllocatorMesosAllocationRunMsCount                     float64 `json:"allocator/mesos/allocation_run_ms/count"`
@@ -317,7 +354,7 @@ type MesosMetricsSnapshot struct {
 	MasterDroppedMessages                                  float64 `json:"master/dropped_messages"`
 	MasterElected                                          float64 `json:"master/elected"`
 	MasterEventQueueDispatches                             float64 `json:"master/event_queue_dispatches"`
-	MasterEventQueueHttpRequests                           float64 `json:"master/event_queue_http_requests"`
+	MasterEventQueueHTTPRequests                           float64 `json:"master/event_queue_http_requests"`
 	MasterEventQueueMessages                               float64 `json:"master/event_queue_messages"`
 	MasterFrameworksActive                                 float64 `json:"master/frameworks_active"`
 	MasterFrameworksConnected                              float64 `json:"master/frameworks_connected"`
