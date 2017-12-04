@@ -5,7 +5,7 @@ BUILD_DATE=$(shell date -u +%Y-%m-%d)
 gitCommit=$(shell git describe --tags --long)
 PKG="github.com/jetmuffin/nap/pkg"
 
-GO_LDFLAGS=-X $(PKG)/version.version=$(VERSION) -X $(PKG)/version.gitCommit=$(GIT_COMMIT) -X $(PKG)/version.buildDate=$(BUILD_DATE) -w -s
+GO_LDFLAGS=-X $(PKG)/version.gitCommit=$(GIT_COMMIT) -X $(PKG)/version.buildDate=$(BUILD_DATE) -w -s
 
 UNAME=$(shell uname -s)
 CGO_ENABLED=0
@@ -35,4 +35,4 @@ lint:
 
 test:
 	@echo $@
-	@go test -v -cover ./pkg/...
+	@go test -v -cover ./...
