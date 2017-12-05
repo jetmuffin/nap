@@ -8,6 +8,8 @@ import (
 	"strings"
 )
 
+// Client is the API client that performs all operations
+// against a docker server.
 type Client struct {
 	// scheme sets the scheme for the client
 	scheme string
@@ -25,6 +27,7 @@ type Client struct {
 	version string
 }
 
+// NewClient initializes a new API client for the given host and API version.
 func NewClient(host string, version string, client *http.Client) (*Client, error) {
 	hostURL, err := ParseHostURL(host)
 	if err != nil {

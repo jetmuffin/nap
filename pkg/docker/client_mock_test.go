@@ -2,9 +2,9 @@ package docker
 
 import (
 	"bytes"
-	"net/http"
 	"encoding/json"
 	"io/ioutil"
+	"net/http"
 )
 
 // ErrorResponse is the wrapper for http response when some errors happened.
@@ -14,6 +14,7 @@ type ErrorResponse struct {
 	// Required: true
 	Message string `json:"message"`
 }
+
 // transportFunc allows us to inject a mock transport for testing. We define it
 // here so we can detect the tlsconfig and return nil for only this type.
 type transportFunc func(*http.Request) (*http.Response, error)

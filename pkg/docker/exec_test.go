@@ -1,13 +1,13 @@
 package docker
 
 import (
-	"github.com/go-check/check"
-	"net/http"
-	"fmt"
-	"strings"
 	"bytes"
 	"encoding/json"
+	"fmt"
+	"github.com/go-check/check"
 	"io/ioutil"
+	"net/http"
+	"strings"
 )
 
 func (s *DockerClientSuite) TestExecCreate(c *check.C) {
