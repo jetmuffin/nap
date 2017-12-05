@@ -41,7 +41,7 @@ func (client *Client) CreateExec(ID string, cmd string) (string, error) {
 
 	var result ExecResponse
 	json.Unmarshal(body, &result)
-	return result.Id, nil
+	return result.ID, nil
 }
 
 func (client *Client) ExecStart(ID string, input chan []byte) (chan []byte, error) {
@@ -50,7 +50,7 @@ func (client *Client) ExecStart(ID string, input chan []byte) (chan []byte, erro
 }
 
 func (client *Client) ExecResize(id string, width int, height int) error {
-	execURL := fmt.Sprintf(client.Host+"/exec/%s/resize?h=%d&w=%d", id, height, width)
+	execURL := fmt.Sprintf("%s/exec/%s/resize?h=%d&w=%d", client.Host, id, height, width)
 
 	resp, err := http.Post(execURL, "application/json;charset=utf-8", nil)
 

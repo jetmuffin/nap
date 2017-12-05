@@ -53,7 +53,7 @@ func (cr *consoleRouter) handleTaskConsole(w http.ResponseWriter, req *http.Requ
 		c.WriteMessage(1, cr.handleError(errors.New("task is not running on any slave now")))
 	}
 
-	cli := docker.NewDockerClient(slave)
+	cli := docker.NewClient(slave)
 
 	var lock sync.Mutex
 
@@ -115,7 +115,7 @@ func (cr *consoleRouter) handleInput(input chan []byte, cmd string) {
 	input <- []byte(cmd)
 }
 
-func (cr *consoleRouter) handleResize(cli *docker.DockerClient, execID string, content string) {
+func (cr *consoleRouter) handleResize(cli *docker.Client, execID string, content string) {
 	var resize ResizeContent
 	json.Unmarshal([]byte(content), &resize)
 
