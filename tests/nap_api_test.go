@@ -5,17 +5,24 @@ import (
 	"github.com/JetMuffin/nap/apis/router"
 	"github.com/go-check/check"
 	"net"
+	"testing"
+	"net/http"
+	"fmt"
+	"io/ioutil"
 )
 
 type NapAPISuite struct {
 	listenAddr string
 	conn       net.Listener
+	endpoint string
 
 	api *apis.Server
 }
 
-func init() {
-	check.Suite(&NapAPISuite{})
+var _ = check.Suite(&NapAPISuite{})
+
+func TestNapAPI(t *testing.T) {
+	check.TestingT(t)
 }
 
 func initRouter() []router.Router {
@@ -24,11 +31,18 @@ func initRouter() []router.Router {
 	return routers
 }
 
-func (s *NapAPISuite) SetUpTest(c *check.C) {
-	s.listenAddr = "5678"
+func (s *NapAPISuite) SetUpSuite(c *check.C) {
+	s.listenAddr = "0.0.0.0:5678"
 	conn, err := net.Listen("tcp", s.listenAddr)
-	c.Assert(err, check.IsNil)
 	s.conn = conn
+	s.endpoint = "http://localhost:5678"
+	c.Assert(err, check.IsNil)
+	c.Assert(s.conn, check.NotNil)
+
+	apiConfig := &apis.Config{
+		LogLevel: "debug",
+	}
+	s.api = apis.New(apiConfig)
 
 	s.api.Accept(s.listenAddr, s.conn)
 	s.api.InitRouter(initRouter()...)
@@ -38,6 +52,16 @@ func (s *NapAPISuite) SetUpTest(c *check.C) {
 }
 
 func (s *NapAPISuite) TearDownSuite(c *check.C) {
-	s.conn.Close()
 	s.api.Shutdown()
+	s.conn.Close()
 }
+
+func (s *NapAPISuite) TestConsoleHello(c *check.C) {
+	resp, err := http.Get(fmt.Sprintf("%s/console/hello", s.endpoint))
+	c.Assert(err, check.IsNil)
+
+	defer resp.Body.Close()
+	_, err = ioutil.ReadAll(resp.Body)
+	c.Assert(err, check.IsNil)
+}
+
