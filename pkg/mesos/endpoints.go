@@ -23,4 +23,3 @@ func (c *Client) metricsEndpoint() string {
 func (c *Client) frameworksEndpoint() string {
 	return fmt.Sprintf("%s/frameworks", c.Master.String())
 }
-

@@ -11,13 +11,13 @@ import (
 
 const (
 	// ClientID presents key to oauth backend.
-	ClientID     = "dc-njuics-cn"
+	ClientID = "dc-njuics-cn"
 	// ClientSecret is the secret for oauth.
 	ClientSecret = "dcos-nap"
 	// GrantType is the grant type of oauth.
-	GrantType    = "authorization_code"
+	GrantType = "authorization_code"
 	// RedirectURL is the url to redirect after authentication.
-	RedirectURL  = "http://localhost:4200"
+	RedirectURL = "http://localhost:4200"
 )
 
 func (ar *authRouter) handleAuthorize(w http.ResponseWriter, req *http.Request) {

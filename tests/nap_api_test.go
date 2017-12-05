@@ -1,20 +1,20 @@
 package tests
 
 import (
+	"fmt"
 	"github.com/JetMuffin/nap/apis"
 	"github.com/JetMuffin/nap/apis/router"
 	"github.com/go-check/check"
-	"net"
-	"testing"
-	"net/http"
-	"fmt"
 	"io/ioutil"
+	"net"
+	"net/http"
+	"testing"
 )
 
 type NapAPISuite struct {
 	listenAddr string
 	conn       net.Listener
-	endpoint string
+	endpoint   string
 
 	api *apis.Server
 }
@@ -64,4 +64,3 @@ func (s *NapAPISuite) TestConsoleHello(c *check.C) {
 	_, err = ioutil.ReadAll(resp.Body)
 	c.Assert(err, check.IsNil)
 }
-

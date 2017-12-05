@@ -14,7 +14,7 @@ import (
 	"time"
 )
 
-func (client *DockerClient) CreateExec(id string, cmd string) (string, error) {
+func (client *Client) CreateExec(ID string, cmd string) (string, error) {
 	var jsonBody = strings.NewReader(`{
 		"AttachStdin": true,
 		"AttachStdout": true,
@@ -26,7 +26,7 @@ func (client *DockerClient) CreateExec(id string, cmd string) (string, error) {
 		]
 	}`)
 
-	res, err := http.Post(client.Host+"/containers/"+id+"/exec", "application/json;charset=utf-8", jsonBody)
+	res, err := http.Post(fmt.Sprintf("%s/containers/%s/exec", client.Host, ID), "application/json;charset=utf-8", jsonBody)
 
 	if err != nil {
 		return "", err
@@ -44,15 +44,15 @@ func (client *DockerClient) CreateExec(id string, cmd string) (string, error) {
 	return result.Id, nil
 }
 
-func (client *DockerClient) ExecStart(id string, input chan []byte) (chan []byte, error) {
-	execUrl, _ := url.Parse(client.Host + "/exec/" + id + "/start")
-	return client.connect(execUrl, input)
+func (client *Client) ExecStart(ID string, input chan []byte) (chan []byte, error) {
+	execURL, _ := url.Parse(fmt.Sprintf("%s/exec/%s/start", client.Host, ID))
+	return client.connect(execURL, input)
 }
 
-func (client *DockerClient) ExecResize(id string, width int, height int) error {
-	execUrl := fmt.Sprintf(client.Host+"/exec/%s/resize?h=%d&w=%d", id, height, width)
+func (client *Client) ExecResize(id string, width int, height int) error {
+	execURL := fmt.Sprintf(client.Host+"/exec/%s/resize?h=%d&w=%d", id, height, width)
 
-	resp, err := http.Post(execUrl, "application/json;charset=utf-8", nil)
+	resp, err := http.Post(execURL, "application/json;charset=utf-8", nil)
 
 	if err != nil {
 		return err
@@ -68,7 +68,7 @@ func (client *DockerClient) ExecResize(id string, width int, height int) error {
 
 }
 
-func (client *DockerClient) connect(url *url.URL, input chan []byte) (chan []byte, error) {
+func (client *Client) connect(url *url.URL, input chan []byte) (chan []byte, error) {
 	output := make(chan []byte)
 
 	req, _ := http.NewRequest("POST", url.String(), strings.NewReader(

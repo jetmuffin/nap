@@ -41,4 +41,3 @@ func (c *Client) GetFrameworkByID(ID string) (Framework, error) {
 
 	return Framework{}, fmt.Errorf("framework ID %s not found", ID)
 }
-

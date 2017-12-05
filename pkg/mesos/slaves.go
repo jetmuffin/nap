@@ -1,8 +1,8 @@
 package mesos
 
 import (
-	"fmt"
 	"encoding/json"
+	"fmt"
 )
 
 // SlavesWrap is the wrapper for slave endpoint of mesos

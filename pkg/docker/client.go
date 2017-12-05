@@ -9,18 +9,8 @@ import (
 	"net/http"
 )
 
-type DockerClient struct {
+type Client struct {
 	Host string
-}
-
-type Container struct {
-	Id      string
-	Names   []string
-	Image   string
-	ImageID string
-	Command string
-	Created int64
-	Status  string
 }
 
 type ContainerResponse struct {
@@ -28,11 +18,11 @@ type ContainerResponse struct {
 }
 
 type ExecResponse struct {
-	Id string
+	 ID string
 }
 
-type DockerContainer struct {
-	Id      string
+type Container struct {
+	ID      string
 	Names   []string
 	Image   string
 	ImageID string
@@ -41,14 +31,14 @@ type DockerContainer struct {
 	Status  string
 }
 
-func NewDockerClient(slave mesos.Slave) *DockerClient {
+func NewClient(slave mesos.Slave) *Client {
 	endpoint := fmt.Sprintf("http://%s:%d", slave.Hostname, 2375)
-	return &DockerClient{
+	return &Client{
 		Host: endpoint,
 	}
 }
 
-func (client *DockerClient) ListContainers() []Container {
+func (client *Client) ListContainers() []Container {
 	resp, err := http.Get(client.Host + "/containers/json")
 	if err != nil {
 		logrus.Println("get container error")
