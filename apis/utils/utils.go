@@ -27,6 +27,7 @@ func WriteJSON(w http.ResponseWriter, code int, v interface{}) error {
 	return enc.Encode(v)
 }
 
+// WriteError writes the error message to the http response stream.
 func WriteError(w http.ResponseWriter, err error) {
 	statusCode := http.StatusBadRequest
 	response := &ErrorResponse{
