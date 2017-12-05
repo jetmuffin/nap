@@ -30,7 +30,7 @@ func (cr *consoleRouter) handleTaskConsole(w http.ResponseWriter, req *http.Requ
 
 	// Parse request parameters
 	if err := utils.ParseForm(req); err != nil {
-		c.WriteMessage(1, cr.handleError(err))
+		c.WriteMessage(ErrorMessage, cr.handleError(err))
 		return
 	}
 
@@ -38,27 +38,33 @@ func (cr *consoleRouter) handleTaskConsole(w http.ResponseWriter, req *http.Requ
 	taskID := req.Form.Get("task_id")
 	task, err := cr.backend.GetTaskByID(taskID)
 	if err != nil {
-		c.WriteMessage(1, cr.handleError(errors.New("task not found")))
+		c.WriteMessage(ErrorMessage, cr.handleError(errors.New("task not found")))
 	}
 
 	// Get container id.
 	containerID, err := cr.backend.GetTaskContainerName(task)
 	if err != nil {
-		c.WriteMessage(1, cr.handleError(errors.New("task container not found, please check the task_id parameter")))
+		c.WriteMessage(ErrorMessage, cr.handleError(errors.New("task container not found, please check the task_id parameter")))
 	}
 
 	// Get slave node
 	slave, err := cr.backend.GetSlaveByID(task.SlaveID)
 	if err != nil {
-		c.WriteMessage(1, cr.handleError(errors.New("task is not running on any slave now")))
+		c.WriteMessage(ErrorMessage, cr.handleError(errors.New("task is not running on any slave now")))
 	}
 
-	cli := docker.NewClient(slave)
+	slaveEndpoint := fmt.Sprintf("tcp://%s:%d", slave.Hostname, 2375)
+	cli, err := docker.NewClient(slaveEndpoint, "", nil)
+	if err != nil {
+		c.WriteMessage(ErrorMessage, cr.handleError(err))
+	}
 
 	var lock sync.Mutex
 
 	input := make(chan []byte)
-	execID, err := cli.CreateExec(containerID, "/bin/bash")
+
+	// TODO(jetmuffin): handle the situation that container does not has the process `/bin/bash`
+	execID, err := cli.ExecCreate(containerID, "/bin/bash")
 	if err != nil {
 		logrus.Error(err)
 	}
