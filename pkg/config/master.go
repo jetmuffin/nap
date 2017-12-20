@@ -1,33 +1,22 @@
 package config
 
 import (
-	"github.com/urfave/cli"
-	"net/url"
+	"fmt"
+	"github.com/BurntSushi/toml"
 )
 
 type MasterConfig struct {
-	ListenAddr string   `json:"listen_addr"`
-	MesosAddr  *url.URL `json:"mesos_addr"`
-	LogLevel   string
-	OAuthAddr  string
+	ListenAddr string `toml:"listen_addr"`
+	MesosAddr  Addr   `toml:"mesos_addr"`
+	LogLevel   string `toml:"log_level"`
+	OAuthAddr  string `toml:"oauth_addr"`
 }
 
-func NewMasterConfig(c *cli.Context) (*MasterConfig, error) {
-	cfg := &MasterConfig{
-		ListenAddr: "0.0.0.0:5678",
-	}
+func ParseMasterConfig(configPath string) (MasterConfig, error) {
+	var cfg MasterConfig
 
-	var err error
-
-	cfg.MesosAddr, err = url.Parse(c.String("mesos"))
-	if err != nil {
-		return cfg, err
-	}
-
-	cfg.OAuthAddr = c.String("oauth")
-
-	if c.String("loglevel") != "" {
-		cfg.LogLevel = c.String("loglevel")
+	if _, err := toml.DecodeFile(configPath, &cfg); err != nil {
+		return cfg, fmt.Errorf("parse config file error: %v", err)
 	}
 
 	return cfg, nil

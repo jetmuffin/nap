@@ -1,17 +1,21 @@
 package cli
 
-import "github.com/urfave/cli"
+import (
+	"fmt"
+	"os"
+)
 
 func Main() {
-	app := cli.NewApp()
-	app.Name = "nap"
-	app.Usage = "Next application platform"
+	cli := NewCli()
 
-	app.Commands = []cli.Command{
-		Master(),
-		Agent(),
-		Version(),
+	base := &baseCommand{cmd: cli.rootCmd, cli: cli}
+
+	// Add all subcommands
+	cli.AddCommand(base, &VersionCommand{})
+	cli.AddCommand(base, &MasterCommand{})
+
+	if err := cli.Run(); err != nil {
+		fmt.Fprintf(os.Stderr, "Error: %v\n", err)
+		os.Exit(1)
 	}
-
-	app.RunAndExitOnError()
 }

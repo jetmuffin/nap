@@ -1,0 +1,4 @@
+listen_addr = "0.0.0.0:5678"
+mesos_addr = "mesos://n167:5050"
+log_level = "debug"
+oauth_addr = "n147:10010"
