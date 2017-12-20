@@ -1,22 +1,41 @@
 package cli
 
-import "github.com/urfave/cli"
+import (
+	"github.com/spf13/cobra"
+)
 
-func Agent() cli.Command {
-	agentCmd := cli.Command{
-		Name:        "agent",
-		Usage:       "start an agent node",
-		Description: "run nap agent command",
-		Action:      StartAgent,
-	}
-
-	agentCmd.Flags = []cli.Flag{
-		FlagListenAddr(),
-	}
-
-	return agentCmd
+type agentFlags struct {
+	debug      bool
+	configPath string
 }
 
-func StartAgent(c *cli.Context) error {
+// AgentCommand implements agent subcommand.
+type AgentCommand struct {
+	baseCommand
+
+	flags agentFlags
+}
+
+// Init initialize agent commands
+func (a *AgentCommand) Init(c *Cli) {
+	a.cli = c
+	a.cmd = &cobra.Command{
+		Use:   "agent",
+		Short: "Start nap agent daemon",
+		Args:  cobra.NoArgs,
+		RunE: func(cmd *cobra.Command, args []string) error {
+			return a.runAgent()
+		},
+	}
+}
+
+// addFlags add flags for specific command.
+func (a *AgentCommand) addFlags() {
+	flagSet := a.cmd.Flags()
+	flagSet.BoolVar(&a.flags.debug, "debug", false, "Output debug log to stderr.")
+	flagSet.StringVarP(&a.flags.configPath, "config", "c", "/etc/nap/config.toml", "Specify the path of configuration file.")
+}
+
+func (a *AgentCommand) runAgent() error {
 	return nil
 }

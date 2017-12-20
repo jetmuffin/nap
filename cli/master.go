@@ -4,39 +4,55 @@ import (
 	"fmt"
 	"github.com/JetMuffin/nap/pkg/config"
 	"github.com/JetMuffin/nap/pkg/master"
-	"github.com/urfave/cli"
+	"github.com/spf13/cobra"
 )
 
-func Master() cli.Command {
-	cmd := cli.Command{
-		Name:        "master",
-		Usage:       "start an master node",
-		Description: "run nap master command",
-		Action:      StartMaster,
-	}
-
-	cmd.Flags = []cli.Flag{
-		FlagListenAddr(),
-		FlagMesosAddr(),
-		FlagLogLevel(),
-		FlagOAuthAddr(),
-	}
-
-	return cmd
+type masterFlags struct {
+	debug      bool
+	configFile string
 }
 
-func StartMaster(c *cli.Context) error {
-	cfg, err := config.NewMasterConfig(c)
+// MasterCommand implements master subcommand.
+type MasterCommand struct {
+	baseCommand
+
+	flags masterFlags
+}
+
+// Init initialize master commands
+func (m *MasterCommand) Init(c *Cli) {
+	m.cli = c
+	m.cmd = &cobra.Command{
+		Use:   "master",
+		Short: "Start nap master daemon",
+		Args:  cobra.NoArgs,
+		RunE: func(cmd *cobra.Command, args []string) error {
+			return m.runMaster()
+		},
+	}
+
+	m.addFlags()
+}
+
+// addFlags adds flags for specific command.
+func (m *MasterCommand) addFlags() {
+	flagSet := m.cmd.Flags()
+	flagSet.BoolVar(&m.flags.debug, "debug", false, "Output debug log to stderr.")
+	flagSet.StringVarP(&m.flags.configFile, "config", "c", "/etc/nap/config.toml", "Specify the path of configuration file.")
+}
+
+func (m *MasterCommand) runMaster() error {
+	cfg, err := config.ParseMasterConfig(m.flags.configFile)
 	if err != nil {
-		return fmt.Errorf("Failed to parse config: %v", err)
+		return err
 	}
 
 	setupLogger(cfg.LogLevel)
 
-	masterNode, err := master.New(cfg)
+	master, err := master.New(cfg)
 	if err != nil {
 		return fmt.Errorf("Error when initilize master node: %v", err)
 	}
 
-	return masterNode.Start()
+	return master.Start()
 }

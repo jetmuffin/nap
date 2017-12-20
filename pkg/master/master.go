@@ -17,11 +17,11 @@ type Master struct {
 	listener    net.Listener
 	mesosClient *mesos.Client
 
-	cfg   *config.MasterConfig
+	cfg   config.MasterConfig
 	errCh chan error
 }
 
-func New(cfg *config.MasterConfig) (*Master, error) {
+func New(cfg config.MasterConfig) (*Master, error) {
 	conn, err := net.Listen("tcp", cfg.ListenAddr)
 	if err != nil {
 		return nil, err
@@ -41,7 +41,7 @@ func New(cfg *config.MasterConfig) (*Master, error) {
 }
 
 func (m *Master) Start() error {
-	m.mesosClient = mesos.NewClient(m.cfg.MesosAddr, nil)
+	m.mesosClient = mesos.NewClient(m.cfg.MesosAddr.Address(), nil)
 
 	m.api.Accept(m.cfg.ListenAddr, m.listener)
 	m.initRouter()
